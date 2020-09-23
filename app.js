@@ -1,7 +1,8 @@
 const express = require("express");
 const morgan = require("morgan"); //middleware application logger
 const nunjucks = require("nunjucks");
-const tweetBank = require("./tweetBank");
+const routes = require('./routes');
+const parser = require("body-parser")
 
 const app = express(); // crea una instancia de una aplicación de express
 
@@ -12,21 +13,20 @@ nunjucks.configure("views"); // apunta a nunjucks al directorio correcto para lo
 
 app.use(morgan("tiny"));
 
-let tweetsDeEjemplo = [
+/*let tweetsDeEjemplo = [
   { id: 1, name: "juan", content: "este es un tweeettt de juan" },
   { id: 2, name: "carlos", content: "este es un tweeettt de carlos" },
   { id: 3, name: "pepe", content: "este es un tweeettt de pepe" },
-];
+];*/
 
 app.use(express.static("./public"));
+app.use(parser.urlencoded({ extended: true }))
+app.use(parser.json())
 
-app.get("/", function (req, res) {
-  res.render("index", { tweets: tweetsDeEjemplo });
-});
-
+app.use('/', routes);
 app.listen(3000, function () {
   console.log("Estas escuhando en el puerto 3000");
 });
 
 
-//AGREGANDO UN COMENTARIO DE PRUEBA
+

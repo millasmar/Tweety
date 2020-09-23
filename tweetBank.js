@@ -1,9 +1,15 @@
 const _ = require("lodash");
 
-let data = [];
-
+let data = [{ name: 'Santi Ecma',
+content:
+ 'Plataforma 5 es sorprendente! Los profesores simplemente son sorprendente. #P5Love #codedreams', id: 0 },
+{ name: 'Guille Fisicaro',
+content:
+ 'Plataforma 5 es emocionante! Los profesores simplemente son dulce. #P5Love #codedreams', id:1 } ];
+let contador = 2  
 function add(name, content) {
-  data.push({ name: name, content: content });
+  data.push({ name: name, content: content, id: contador});
+  contador++
 }
 function list() {
   return _.cloneDeep(data);
@@ -60,6 +66,7 @@ const getFakeTweet = function () {
     ". #P5Love #codedreams"
   );
 };
-for (let i = 0; i < 10; i++) {
+/*for (let i = 0; i < 10; i++) {
   module.exports.add(getFakeName(), getFakeTweet());
 }
+console.log(list())*/
